@@ -4,11 +4,13 @@ const { Todo } = require('../models/');
 module.exports.checkAllController = async (req, res) => {
   try {
     //обновляем тело запроса где поле checked:false
+    const { checked } = req.body;
+
     const checkAllTodos = await Todo.update(
-      {checked: true},
+      {checked},
       {
         where:{
-          checked:false
+          checked: !checked
         }
       }
     );
